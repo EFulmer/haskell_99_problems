@@ -1,0 +1,10 @@
+-- Problem 3:
+-- Find the k-th element of a list.
+
+kthElem :: (Integral b) => [a] -> b -> a
+kthElem xs k = xs !! (k + 1)
+
+-- why not be silly with recursion?
+elemAt :: (Integral b) => [a] -> b -> a
+elemAt xs k = elemAt $ tail xs (k - 1)
+elemAt xs 0 = head xs

@@ -1,0 +1,11 @@
+-- Problem 8:
+-- Eliminate consecutive duplicates of list elements.
+
+import Data.List
+
+-- Data.List has the nub function that does just this.
+
+compress :: (Eq a) => [a] -> [a]
+compress [] = []
+compress [x] = [x]
+compress x:xs = if x != xs !! 1 then x:(compress xs) else compress xs

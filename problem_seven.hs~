@@ -1,0 +1,6 @@
+-- Problem 7:
+-- Flatten a nested list structure.
+
+-- nub in Data.List is a Haskell-provided version, but that's no fun!
+flatten :: [[a]] -> [a]
+flatten xs = foldl (\acc x -> x:acc) [] xs

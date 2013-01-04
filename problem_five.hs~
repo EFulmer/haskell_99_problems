@@ -1,0 +1,9 @@
+-- Problem 5:
+-- Reverse a list.
+
+-- folding:
+
+rev :: [a] -> [a]
+rev = foldr1 (\x y -> [x] ++ [y])
+
+-- backwards :: [a] -> [a]

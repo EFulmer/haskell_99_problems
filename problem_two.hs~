@@ -1,0 +1,15 @@
+-- Problem 1:
+-- Find the next to last element of a list.
+
+lastButOne :: [a] -> a
+lastButOne x:y:[] = x
+lastButOne x:xs = if length xs > 2
+                  then lastButOne xs
+                  else error "list only has one element"
+
+nextToLast :: [a] -> a
+
+
+testOne   = "aeiou"
+testTwo   = [1,2]
+testThree = [True]
