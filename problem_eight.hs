@@ -9,18 +9,19 @@ import Data.List
 
 -- Data.List has the nub function that does just this.
 
--- compress :: (Eq a) => [a] -> [a]
--- compress [] = []
--- compress xs = xs
--- compress x:xs = if x /= xs !! 1 then x:(compress xs) else compress xs
+compress :: (Eq a) => [a] -> [a]
+compress [] = []
+compress (x:[]) = [x]
+compress (x:xs@(y:ys)) = if x == y
+                         then compress xs
+                         else x:(compress xs)
 
--- folding
-compress' :: (Eq a) => [a] -> [a]
-compress' = foldr1 removeDupes
-            where removeDupes x y = if x == y then 
+-- test cases:
+testOne = [1,1,1,2]
+testTwo = "aa"
 
--- guards
-compress'' :: (Eq a) => [a] -> [a]
-compress'' (x:xs)
-  | length xs <= 1 = xs
-  | otherwise      = if x /= xs !! 1 then x:(compress'' xs) else compress'' xs
+-- test against nub's results:
+main :: IO ()
+main = if nub testOne == compress testOne && nub testTwo == compress testTwo
+       then putStrLn "Correct!"
+       else putStrLn "Failure!"
