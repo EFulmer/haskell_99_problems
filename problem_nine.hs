@@ -6,8 +6,6 @@
 -- note to self: can pack lists by [x]:[], resulting in [[x]]
 
 pack :: Eq a => [a] -> [[a]]
-pack [] = []
-pack (x:[]) = []
-pack (x:y:ys) = if x == y then x:y:(pack ys) else [x] ++ pack (y:ys)
-
--- pack' :: Eq a => [a] -> [[a]]
+pack []       = []
+pack (x:[])   = [[x]]
+pack (x:y:ys) = if x == y then [[x,y]] ++ pack ys else [[x]] ++ pack (y:ys)
