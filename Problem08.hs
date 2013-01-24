@@ -1,10 +1,11 @@
--- Problem 9:
+-- Problem 8:
+-- Eliminate consecutive duplicates of list elements.
+-- If a list contains repeated elements they should be replaced with a single 
+-- copy of the element. The order of the elements should not be changed.
 
--- Pack consecutive duplicates of list elements into sublists. If a list 
--- contains repeated elements they should be placed in separate sublists.
+compress :: (Eq a) => [a] -> [a]
+compress []     = []
+compress (x:xs) = x:(dropWhile (x==) (compress xs))
 
--- note to self: can pack lists by [x]:[], resulting in [[x]]
-
-pack :: Eq a => [a] -> [[a]]
-pack []      = []
-pack (x:xs)  = (x:takeWhile (x==) xs):(pack $ dropWhile (x==) xs)
+main :: IO ()
+main = putStrLn . show $ (compress ["a","a","a","a","b","c","c","a","a","d","e","e","e","e"] == ["a","b","c","a","d","e"])
