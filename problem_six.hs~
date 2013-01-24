@@ -1,5 +1,0 @@
--- Problem 6:
--- Find out whether a list is a palindrome.
-
-palindrome :: [a] -> Bool
-palindrome xs = xs == reverse xs

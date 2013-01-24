@@ -1,5 +1,0 @@
--- Problem 1:
--- Find the last element of a list.
-
-lastElement :: [a] -> a
-lastElement xs = xs !! (length xs - 1)
