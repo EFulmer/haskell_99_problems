@@ -1,20 +1,19 @@
 -- Problem 15:
 -- Replicate the elements of a list a given number of times.
 
-
 -- First approach: just use Prelude's replicate function. Uninteresting.
-repli :: [a] -> [a]
-repli []     = []
-repli (x:xs) = (replicate 2 x) ++ (repli xs)
+repli :: [a] -> Int -> [a]
+repli [] _     = []
+repli (x:xs) n = (replicate n x) ++ (repli xs n)
 
 -- Second approach: use take-repeat to mimic replicate. Still boring.
-repli' :: [a] -> [a]
-repli' []     = []
-repli' (x:xs) = (take 2 $ repeat x) ++ (repli xs)
+repli' :: [a] -> Int -> [a]
+repli' [] _     = []
+repli' (x:xs) n = (take n $ repeat x) ++ (repli xs n)
 
--- Now with monads. Now we're talking.
-repli'' :: [a] -> [a]
-repli'' xs = xs >>= (\x -> [x,x])
+-- Simple monadic approach
+repli'' :: [a] -> Int -> [a]
+
 
 testOne = [1,2,3]
 testTwo = [Just "mayonaise", Nothing]
@@ -26,9 +25,9 @@ testTwo = [Just "mayonaise", Nothing]
 
 main :: IO ()
 main = do
-     putStrLn . show $ repli testOne
-     putStrLn . show $ repli testTwo
-     putStrLn . show $ repli' testOne
-     putStrLn . show $ repli' testTwo
-     putStrLn . show $ repli'' testOne
-     putStrLn . show $ repli'' testTwo
+     putStrLn . show $ repli testOne 3
+     putStrLn . show $ repli testTwo 3 
+     putStrLn . show $ repli' testOne 3
+     putStrLn . show $ repli' testTwo 3
+     putStrLn . show $ repli'' testOne 3
+     putStrLn . show $ repli'' testTwo 3
