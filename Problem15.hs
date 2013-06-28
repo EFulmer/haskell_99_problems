@@ -11,9 +11,10 @@ repli' :: [a] -> Int -> [a]
 repli' [] _     = []
 repli' (x:xs) n = (take n $ repeat x) ++ (repli xs n)
 
--- Simple monadic approach
+-- Less dumb 
 repli'' :: [a] -> Int -> [a]
-
+repli'' [] _ = []
+repli'' xs n = concatMap (\x -> (take n $ repeat x)) xs
 
 testOne = [1,2,3]
 testTwo = [Just "mayonaise", Nothing]
